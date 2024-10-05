@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2C</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a SKYB2C</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-list">
+            <h2>Productos Disponibles</h2>
+            <div class="products">
+                <!-- Cada producto tendrá un nombre, una imagen y un botón para agregar al carrito -->
+                <div class="product">
+                    <img src="https://via.placeholder.com/150" alt="Producto 1">
+                    <h3>Producto 1</h3>
+                    <p>$10.00</p>
+                    <button class="add-to-cart">Agregar al Carrito</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/150" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>$20.00</p>
+                    <button class="add-to-cart">Agregar al Carrito</button>
+                </div>
+                <!-- Puedes agregar más productos aquí -->
+            </div>
+        </section>
+
+        <section class="cart">
+            <h2>Tu Carrito de Compras</h2>
+            <div class="cart-items">
+                <!-- Aquí aparecerán los productos que el usuario agregue al carrito -->
+                <p>No hay productos en el carrito.</p>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>
