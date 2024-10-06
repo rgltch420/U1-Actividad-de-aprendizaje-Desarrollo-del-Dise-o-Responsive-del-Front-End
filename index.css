@@ -22,15 +22,43 @@ header nav ul {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    position: relative;
 }
 
 header nav ul li {
     margin: 0 10px;
+    position: relative;
 }
 
 header nav ul li a {
     text-decoration: none;
     color: #333;
+}
+
+/* Submenú */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+header nav ul li:hover .submenu {
+    display: block;
 }
 
 /* Estilo de los productos */
@@ -75,17 +103,30 @@ header nav ul li a {
 .cart {
     border-top: 2px solid #ddd;
     padding-top: 20px;
-    margin-top: 40px;
+}
+
+.cart-items {
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Añadir borde al carrito */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: #f9f9f9; /* Color de fondo */
 }
 
 .cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    display: flex; /* Usar flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Centrar verticalmente */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Separación entre productos */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* Quitar el borde del último elemento */
 }
 
 .remove-from-cart {
-    background-color: #dc3545;
+    background-color: #dc3545; /* Color del botón de eliminar */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -93,7 +134,7 @@ header nav ul li a {
 }
 
 .remove-from-cart:hover {
-    background-color: #c82333;
+    background-color: #c82333; /* Color al pasar el ratón */
 }
 
 .checkout-btn {
@@ -118,4 +159,57 @@ header nav ul li a {
     .products {
         grid-template-columns: 1fr;
     }
+
+    .cart-items {
+        padding: 5px; /* Ajustar padding en pantallas pequeñas */
+    }
+}
+/* Estilo del menú del carrito */
+.cart-menu {
+    display: none; /* Ocultar el menú del carrito por defecto */
+    position: absolute;
+    top: 100%; /* Mostrar debajo del icono del carrito */
+    right: 0; /* Alinear a la derecha */
+    background-color: white; /* Fondo blanco para el menú */
+    border: 1px solid #ddd; /* Borde del menú */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para el menú */
+    z-index: 1000; /* Asegurarse de que el menú esté por encima */
+}
+
+.cart-icon {
+    position: relative; /* Posicionar el ícono relativo al menú */
+}
+
+.cart-icon:hover + .cart-menu,
+.cart-menu:hover {
+    display: block; /* Mostrar el menú al pasar el ratón */
+}
+
+/* Mejorar el estilo del carrito */
+.cart-items {
+    padding: 10px; /* Espaciado interno */
+}
+
+.cart-item {
+    display: flex; /* Usar flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Centrar verticalmente */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Separación entre productos */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* Quitar el borde del último elemento */
+}
+
+.remove-from-cart {
+    background-color: #dc3545; /* Color del botón de eliminar */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-from-cart:hover {
+    background-color: #c82333; /* Color al pasar el ratón */
 }

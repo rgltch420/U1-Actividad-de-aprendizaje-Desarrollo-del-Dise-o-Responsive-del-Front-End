@@ -1,7 +1,7 @@
-// Array para almacenar los productos del carrito, si existe en localStorage se utiliza
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Array para almacenar los productos del carrito
+let cart = [];
 
-// Obtener los botones de agregar al carrito
+// Obtener los botones de agregar al carrito y la sección del carrito
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 const cartItemsContainer = document.querySelector('.cart-items');
 
@@ -39,18 +39,35 @@ function updateCart() {
     });
 
     // Añadir funcionalidad a los botones de eliminar
-    const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
-    removeFromCartButtons.forEach(button => {
+    const removeButtons = document.querySelectorAll('.remove-from-cart');
+    removeButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            const index = e.target.dataset.index;
-            cart.splice(index, 1);  // Eliminar producto del carrito
-            updateCart();  // Actualizar el carrito
+            const index = e.target.getAttribute('data-index');
+            cart.splice(index, 1); // Eliminar producto del carrito
+            updateCart(); // Actualizar el carrito
         });
     });
-
-    // Guardar carrito en localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Llamar a updateCart al cargar la página para que los productos persistan
-updateCart();
+// Efecto animado para el submenú
+const submenus = document.querySelectorAll('.submenu');
+
+submenus.forEach(submenu => {
+    submenu.style.display = 'none'; // Ocultar submenú al principio
+
+    const parent = submenu.parentElement;
+
+    parent.addEventListener('mouseenter', () => {
+        submenu.style.display = 'block';
+        submenu.style.opacity = '0';
+        submenu.style.transition = 'opacity 0.3s ease-in';
+        submenu.style.opacity = '1';
+    });
+
+    parent.addEventListener('mouseleave', () => {
+        submenu.style.opacity = '0';
+        setTimeout(() => {
+            submenu.style.display = 'none';
+        }, 300);
+    });
+});
