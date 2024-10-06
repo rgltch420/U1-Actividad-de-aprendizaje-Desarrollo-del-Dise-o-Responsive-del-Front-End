@@ -1,5 +1,5 @@
-// Array para almacenar los productos del carrito
-let cart = [];
+// Array para almacenar los productos del carrito, si existe en localStorage se utiliza
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Obtener los botones de agregar al carrito
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
@@ -28,12 +28,29 @@ function updateCart() {
     }
 
     // Mostrar cada producto en el carrito
-    cart.forEach(product => {
+    cart.forEach((product, index) => {
         const cartItem = document.createElement('div');
         cartItem.classList.add('cart-item');
         cartItem.innerHTML = `
             <p>${product.name} - ${product.price}</p>
+            <button class="remove-from-cart" data-index="${index}">Eliminar</button>
         `;
         cartItemsContainer.appendChild(cartItem);
     });
+
+    // Añadir funcionalidad a los botones de eliminar
+    const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
+    removeFromCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            cart.splice(index, 1);  // Eliminar producto del carrito
+            updateCart();  // Actualizar el carrito
+        });
+    });
+
+    // Guardar carrito en localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+// Llamar a updateCart al cargar la página para que los productos persistan
+updateCart();

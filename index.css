@@ -75,10 +75,25 @@ header nav ul li a {
 .cart {
     border-top: 2px solid #ddd;
     padding-top: 20px;
+    margin-top: 40px;
 }
 
-.cart-items {
-    margin-bottom: 20px;
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.remove-from-cart {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-from-cart:hover {
+    background-color: #c82333;
 }
 
 .checkout-btn {
