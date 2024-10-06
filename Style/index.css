@@ -213,3 +213,198 @@ header nav ul li:hover .submenu {
 .remove-from-cart:hover {
     background-color: #c82333; /* Color al pasar el ratón */
 }
+
+/* Sección de productos */
+.product-section {
+    margin: 40px 0;
+}
+
+.product-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 18px;
+    color: #28a745;
+}
+
+.add-to-cart {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.add-to-cart:hover {
+    background-color: #218838;
+}
+
+/* Enlace a más vendidos */
+.view-more {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.view-more:hover {
+    color: #0056b3;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  /* Fase lunar (animación de la luna) */
+  .lunar-animation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .moon {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: lunarPhases 2s ease-in-out infinite;
+  }
+  
+  /* Fases de la luna (animación) */
+  @keyframes lunarPhases {
+    0% {
+      box-shadow: 10px 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+    25% {
+      box-shadow: 5px 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.9);
+    }
+    75% {
+      box-shadow: -5px 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    100% {
+      box-shadow: -10px 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  /* Estilos de los botones */
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+
+/* Estilo del carrito */
+.cart-section {
+    margin: 20px;
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex; /* Usar flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Centrar verticalmente */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Separación entre productos */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* Quitar el borde del último elemento */
+}
+
+.remove-from-cart {
+    background-color: #dc3545; /* Color del botón de eliminar */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-from-cart:hover {
+    background-color: #c82333; /* Color al pasar el ratón */
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.checkout-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.checkout-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item {
+        flex-direction: column; /* Alinear verticalmente en la página del carrito */
+    }
+}
