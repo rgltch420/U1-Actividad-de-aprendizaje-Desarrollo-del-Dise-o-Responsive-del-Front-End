@@ -26,7 +26,6 @@
                     <a href="cart.html" class="cart-icon">CAR2C</a>
                     <!-- Elimina el menú desplegable del carrito -->
                 </li>
-                
             </ul>
         </nav>
     </header>
@@ -34,14 +33,14 @@
     <main>
         <section class="product-list">
             <h2>Productos Disponibles</h2>
-            <div class="products">
-                <div class="product">
+            <div class="product-grid">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Producto 1">
                     <h3>Producto 1</h3>
                     <p>$10.00</p>
                     <button class="add-to-cart">Agregar al Carrito</button>
                 </div>
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Producto 2">
                     <h3>Producto 2</h3>
                     <p>$20.00</p>
@@ -49,17 +48,18 @@
                 </div>
             </div>
         </section>
+
         <!-- Sección: Oferta del día -->
         <section class="product-section">
             <h2>Oferta del día</h2>
             <div class="product-grid">
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Producto Oferta 1">
                     <h3>Producto 1</h3>
                     <p class="price">$19.99</p>
                     <button class="add-to-cart">Añadir al carrito</button>
                 </div>
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Producto Oferta 2">
                     <h3>Producto 2</h3>
                     <p class="price">$29.99</p>
@@ -73,13 +73,13 @@
         <section class="product-section">
             <h2>Más vendidos de la semana en Disfraces Completos</h2>
             <div class="product-grid">
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Disfraz 1">
                     <h3>Disfraz 1</h3>
                     <p class="price">$39.99</p>
                     <button class="add-to-cart">Añadir al carrito</button>
                 </div>
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Disfraz 2">
                     <h3>Disfraz 2</h3>
                     <p class="price">$49.99</p>
@@ -94,14 +94,14 @@
         <section class="product-section">
             <h2>Más vendidos de la semana en Indumentaria y Calzado</h2>
             <div class="product-grid">
-                <div class="product">
+                <div class="product-card">
                     <img src="https://via.placeholder.com/150" alt="Indumentaria 1">
                     <h3>Indumentaria 1</h3>
                     <p class="price">$59.99</p>
                     <button class="add-to-cart">Añadir al carrito</button>
                 </div>
-                <div class="product">
-                    <img src="https://via.placeholder.com/150"alt="Calzado 1">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Calzado 1">
                     <h3>Calzado 1</h3>
                     <p class="price">$69.99</p>
                     <button class="add-to-cart">Añadir al carrito</button>
@@ -110,9 +110,10 @@
             </div>
             <a href="mas-vendidos-indumentaria.html" class="view-more">Ir a Más vendidos</a>
         </section>
-            <!-- Modal para la fase lunar -->
-            <div id="lunarModal" class="modal">
-                <div class="modal-content">
+        
+        <!-- Modal para la fase lunar -->
+        <div id="lunarModal" class="modal">
+            <div class="modal-content">
                 <div class="lunar-animation">
                     <!-- Aquí va la animación de la fase lunar -->
                     <div class="moon"></div>
@@ -120,10 +121,8 @@
                 <p id="modalMessage"></p>
                 <button id="continueShopping">Seguir comprando</button>
                 <button id="goToCart">Ir al carrito</button>
-                </div>
             </div>
-            
-                
+        </div>
     </main>
 
     <script src="../js/index.js"></script>

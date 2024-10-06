@@ -6,15 +6,21 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1B273E; /* Midnight Blue como fondo principal */
+    color: #EDEDED; /* Color de texto en blanco */
+    text-align: center;
 }
 
 /* Estilo del encabezado */
 header {
+    background-color: #163864; /* Deep Royal Blue para el fondo del header */
+    color: #EDEDED; /* Color blanco para el texto */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    margin-bottom: 20px;
 }
 
 header nav ul {
@@ -24,6 +30,13 @@ header nav ul {
     margin-top: 10px;
     position: relative;
 }
+h1{
+    margin:0;
+}
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
 
 header nav ul li {
     margin: 0 10px;
@@ -32,7 +45,27 @@ header nav ul li {
 
 header nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #EDEDED; 
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #F28500; 
 }
 
 /* Submenú */
@@ -63,7 +96,115 @@ header nav ul li:hover .submenu {
 
 /* Estilo de los productos */
 .product-list {
-    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #FFFFFF; /* White */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    color: #163864; /* Deep Royal Blue */
+}
+
+.product-card p {
+    font-size: 1.2em;
+    color: #1B273E; /* Midnight Blue */
+}
+
+.add-to-cart {
+    background-color: #D7A84A; /* Gold */
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF; /* White */
+    cursor: pointer;
+    font-size: 1em;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #FFC300; /* Amarillo dorado */
+}
+
+/* Estilos de la sección */
+.product-section {
+    margin: 20px 0;
+}
+
+.view-more {
+    display: block;
+    margin: 15px auto;
+    text-align: center;
+    color: #1B273E; /* Midnight Blue */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #FFFFFF; /* White */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.lunar-animation {
+    margin: 20px 0;
+}
+
+#modalMessage {
+    font-size: 1.2em;
+    color: #1B273E; /* Midnight Blue */
+}
+
+button {
+    margin: 10px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
 }
 
 .products {
@@ -148,6 +289,82 @@ header nav ul li:hover .submenu {
 
 .checkout-btn:hover {
     background-color: #0056b3;
+}
+
+/* Tarjetas de productos */
+.product-card {
+    background-color: #F2D78C; /* Pale Yellow para el fondo de las tarjetas */
+    color: #1B273E; /* Texto en Midnight Blue */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+.product-card h2 {
+    font-size: 24px;
+    color: #163864; /* Deep Royal Blue para el título del producto */
+}
+
+.product-card p {
+    color: #40495E; /* Gris pizarra oscuro para el texto secundario */
+}
+
+/* Botones */
+button {
+    background-color: #D7A84A; /* Gold para el fondo de los botones */
+    color: #1B273E; /* Midnight Blue para el texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #E86A33; /* Naranja rojizo complementario para el hover */
+}
+
+/* Sección de carrito */
+.cart-section {
+    background-color: #EDEDED; /* Blanco para el fondo del carrito */
+    color: #1B273E; /* Midnight Blue para el texto */
+    padding: 30px;
+    border-radius: 8px;
+}
+
+/* Pie de página */
+footer {
+    background-color: #163864; /* Deep Royal Blue */
+    color: #EDEDED; /* Texto blanco */
+    padding: 10px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Estilo para la animación lunar */
+.moon-phase-animation {
+    width: 50px;
+    height: 50px;
+    background-color: #D7A84A; /* Dorado para la luna */
+    border-radius: 50%;
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Media Queries para dispositivos móviles */
