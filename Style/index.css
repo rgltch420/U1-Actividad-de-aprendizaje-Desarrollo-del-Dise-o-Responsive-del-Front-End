@@ -5,69 +5,82 @@
     box-sizing: border-box;
 }
 
+/* Variables globales */
+:root {
+    --deep-royal-blue: #2e3447;
+    --midnight-blue: #1B273E;
+    --gold: #D7A84A;
+    --white: #EDEDED;
+    --hover-gold: #FFC300;
+    --highlight-blue: #2e3447;
+    --hover-blue: #2e3447;
+    --danger-red: #dc3545;
+    --hover-red: #c82333;
+    --cart-bg: #f9f9f9;
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-menu: rgba(0, 0, 0, 0.1);
+    --text-color: #1B273E;
+}
+
+/* Estilos generales */
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #1B273E; /* Midnight Blue como fondo principal */
-    color: #EDEDED; /* Color de texto en blanco */
+    background-color: var(--midnight-blue);
+    color: var(--white);
     text-align: center;
 }
 
-/* Estilo del encabezado */
+/* Encabezado */
 header {
-    background-color: #163864; /* Deep Royal Blue para el fondo del header */
-    color: #EDEDED; /* Color blanco para el texto */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-header nav ul {
-    list-style: none;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    position: relative;
-}
-h1{
-    margin:0;
-}
-header h1 {
-    margin: 0;
-    font-size: 36px;
+    align-items: center;
+    justify-content: space-between; /* Asegura que el contenido esté separado */
+    padding: 10px 20px;
+    background-color: var(--deep-royal-blue);
+    box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-header nav ul li {
-    margin: 0 10px;
-    position: relative;
+.logo-container {
+    flex: 0 1 auto; /* No crecerá más allá de su contenido */
 }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #ffffff;
+.logo {
+    height: 60px; /* Ajusta el tamaño del logo aquí */
+    width: auto; /* Mantiene la proporción del logo */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav {
+    display: flex;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Alinea los enlaces al final del contenedor nav */
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 15px;
+    padding: 0 10px;
 }
 
 nav ul li a {
-    color: #EDEDED; 
+    color: var(--white);
     text-decoration: none;
-    transition: color 0.3s;
 }
 
+/* Resto de los estilos */
+
 nav ul li a:hover {
-    color: #F28500; 
+    color: var(--hover-gold);
 }
 
 /* Submenú */
@@ -76,292 +89,211 @@ nav ul li a:hover {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-blue);
+    border: 1px solid #ffffff;
+    box-shadow: 0 2px 8px var(--shadow-menu);
     z-index: 1000;
 }
-
-.submenu li {
-    margin: 0;
-}
-
-.submenu li a {
+header nav ul li:hover .submenu {
     display: block;
+}
+.submenu li a {
     padding: 10px;
     white-space: nowrap;
-}
-
-header nav ul li:hover .submenu {
     display: block;
 }
 
 /* Estilo de los productos */
-.product-list {
-    padding: 20px;
-}
-
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
-    padding: 10px;
+    padding: 10px 20px;
+}
+.product-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--shadow-light);
+}
+.product-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+.product-card h3 {
+    color: var(--deep-royal-blue);
+}
+.product-card p {
+    font-size: 1.2em;
+    color: var(--midnight-blue);
 }
 
+/* Contenedor del carrusel */
+.product-grid {
+    display: flex; /* Alinea los elementos horizontalmente */
+    overflow: hidden; /* Oculta los elementos fuera del contenedor */
+    width: 15%; /* Asegura que ocupa todo el espacio disponible */
+    position: relative;
+    animation: slide 50s infinite linear; /* Ciclo de animación y su duración */
+}
+
+/* Animación para el desplazamiento */
+@keyframes slide {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(0); }
+    20% { transform: translateX(100%); }
+    30% { transform: translateX(100%); }
+    40% { transform: translateX(200%); }
+    50% { transform: translateX(200%); }
+    60% { transform: translateX(300%); }
+    70% { transform: translateX(300%); }
+    80% { transform: translateX(400%); }
+    90% { transform: translateX(400%); }
+}
+
+/* Estilo de cada tarjeta de producto dentro del carrusel */
 .product-card {
-    background-color: #FFFFFF; /* White */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 0 0 100%; /* Ocupa el 100% del ancho del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho y alto */
     padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px var(--shadow-light);
 }
 
 .product-card img {
     width: 100%;
+    height: auto;
     border-radius: 4px;
 }
 
-.product-card h3 {
-    color: #163864; /* Deep Royal Blue */
+.product-card h3, .product-card p {
+    margin-top: 5px;
+    color: var(--deep-royal-blue);
 }
 
-.product-card p {
-    font-size: 1.2em;
-    color: #1B273E; /* Midnight Blue */
-}
-
-.add-to-cart {
-    background-color: #D7A84A; /* Gold */
+/* Botones dentro de cada tarjeta de producto */
+.product-card button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: var(--gold);
     border: none;
     border-radius: 4px;
-    color: #FFFFFF; /* White */
+    color: var(--white);
     cursor: pointer;
-    font-size: 1em;
-    padding: 10px 15px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
+.product-card button:hover {
+    background-color: var(--hover-gold);
+}
+
+/* Botones */
+button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: var(--hover-gold);
+}
+.add-to-cart {
+    background-color: var(--gold);
+}
 .add-to-cart:hover {
-    background-color: #FFC300; /* Amarillo dorado */
+    background-color: var(--hover-gold);
+}
+.remove-from-cart {
+    background-color: var(--danger-red);
+}
+.remove-from-cart:hover {
+    background-color: var(--hover-red);
 }
 
-/* Estilos de la sección */
-.product-section {
+/* Secciones generales */
+.product-section, .cart-section {
     margin: 20px 0;
+    padding: 30px;
+    background-color: var(--white);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-.view-more {
-    display: block;
-    margin: 15px auto;
-    text-align: center;
-    color: #1B273E; /* Midnight Blue */
-    text-decoration: none;
-    font-weight: bold;
+/* Carrito */
+.cart-items {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--cart-bg);
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+.total {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+.checkout-btn {
+    background-color: var(--highlight-blue);
+}
+.checkout-btn:hover {
+    background-color: var(--hover-gold);
 }
 
-/* Estilos para el modal */
+/* Modal */
 .modal {
-    display: none; /* Inicialmente oculto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
 }
-
 .modal-content {
-    background-color: #FFFFFF; /* White */
+    background-color: var(--white);
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    border-radius: 10px;
     max-width: 400px;
     text-align: center;
-    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-.lunar-animation {
-    margin: 20px 0;
-}
-
-#modalMessage {
-    font-size: 1.2em;
-    color: #1B273E; /* Midnight Blue */
-}
-
-button {
-    margin: 10px;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-}
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.product img {
-    max-width: 100%;
-    height: auto;
-}
-
-.product h3 {
-    margin: 10px 0;
-}
-
-.add-to-cart {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.add-to-cart:hover {
-    background-color: #218838;
-}
-
-/* Estilo del carrito */
-.cart {
-    border-top: 2px solid #ddd;
-    padding-top: 20px;
-}
-
-.cart-items {
-    margin-bottom: 20px;
-    border: 1px solid #ddd; /* Añadir borde al carrito */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno */
-    background-color: #f9f9f9; /* Color de fondo */
-}
-
-.cart-item {
-    display: flex; /* Usar flexbox para alineación */
-    justify-content: space-between; /* Espacio entre elementos */
-    align-items: center; /* Centrar verticalmente */
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Separación entre productos */
-}
-
-.cart-item:last-child {
-    border-bottom: none; /* Quitar el borde del último elemento */
-}
-
-.remove-from-cart {
-    background-color: #dc3545; /* Color del botón de eliminar */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.remove-from-cart:hover {
-    background-color: #c82333; /* Color al pasar el ratón */
-}
-
-.checkout-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.checkout-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Tarjetas de productos */
-.product-card {
-    background-color: #F2D78C; /* Pale Yellow para el fondo de las tarjetas */
-    color: #1B273E; /* Texto en Midnight Blue */
-    border-radius: 10px;
-    padding: 20px;
-    margin: 15px;
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
-}
-
-.product-card h2 {
-    font-size: 24px;
-    color: #163864; /* Deep Royal Blue para el título del producto */
-}
-
-.product-card p {
-    color: #40495E; /* Gris pizarra oscuro para el texto secundario */
-}
-
-/* Botones */
-button {
-    background-color: #D7A84A; /* Gold para el fondo de los botones */
-    color: #1B273E; /* Midnight Blue para el texto */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #E86A33; /* Naranja rojizo complementario para el hover */
-}
-
-/* Sección de carrito */
-.cart-section {
-    background-color: #EDEDED; /* Blanco para el fondo del carrito */
-    color: #1B273E; /* Midnight Blue para el texto */
-    padding: 30px;
-    border-radius: 8px;
-}
-
-/* Pie de página */
-footer {
-    background-color: #163864; /* Deep Royal Blue */
-    color: #EDEDED; /* Texto blanco */
-    padding: 10px;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Estilo para la animación lunar */
+/* Fase lunar */
 .moon-phase-animation {
     width: 50px;
     height: 50px;
-    background-color: #D7A84A; /* Dorado para la luna */
+    background-color: var(--gold);
     border-radius: 50%;
     animation: rotate 2s infinite;
 }
-
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -371,250 +303,149 @@ footer p {
     }
 }
 
-/* Media Queries para dispositivos móviles */
-@media (max-width: 768px) {
-    header nav ul {
-        flex-direction: column;
-    }
-
-    .products {
-        grid-template-columns: 1fr;
-    }
-
-    .cart-items {
-        padding: 5px; /* Ajustar padding en pantallas pequeñas */
-    }
-}
 /* Estilo del menú del carrito */
 .cart-menu {
-    display: none; /* Ocultar el menú del carrito por defecto */
+    display: none;
     position: absolute;
-    top: 100%; /* Mostrar debajo del icono del carrito */
-    right: 0; /* Alinear a la derecha */
-    background-color: white; /* Fondo blanco para el menú */
-    border: 1px solid #ddd; /* Borde del menú */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para el menú */
-    z-index: 1000; /* Asegurarse de que el menú esté por encima */
+    top: 100%;
+    right: 0;
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px var(--shadow-menu);
+    z-index: 1000;
 }
-
 .cart-icon {
-    position: relative; /* Posicionar el ícono relativo al menú */
+    position: relative;
+}
+.cart-icon:hover + .cart-menu, .cart-menu:hover {
+    display: block;
 }
 
-.cart-icon:hover + .cart-menu,
-.cart-menu:hover {
-    display: block; /* Mostrar el menú al pasar el ratón */
-}
-
-/* Mejorar el estilo del carrito */
-.cart-items {
-    padding: 10px; /* Espaciado interno */
-}
-
-.cart-item {
-    display: flex; /* Usar flexbox para alineación */
-    justify-content: space-between; /* Espacio entre elementos */
-    align-items: center; /* Centrar verticalmente */
+/* Pie de página */
+footer {
+    background-color: var(--deep-royal-blue);
+    color: var(--white);
     padding: 10px;
-    border-bottom: 1px solid #ddd; /* Separación entre productos */
+    box-shadow: 0 -4px 8px var(--shadow-light);
+}
+footer p {
+    margin: 0;
+    font-size: 14px;
 }
 
-.cart-item:last-child {
-    border-bottom: none; /* Quitar el borde del último elemento */
-}
-
-.remove-from-cart {
-    background-color: #dc3545; /* Color del botón de eliminar */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.remove-from-cart:hover {
-    background-color: #c82333; /* Color al pasar el ratón */
-}
-
-/* Sección de productos */
-.product-section {
-    margin: 40px 0;
-}
-
-.product-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-
-.product img {
-    max-width: 100%;
-    height: auto;
-}
-
-.product h3 {
-    margin: 10px 0;
-}
-
-.price {
-    font-size: 18px;
-    color: #28a745;
-}
-
-.add-to-cart {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.add-to-cart:hover {
-    background-color: #218838;
-}
-
-/* Enlace a más vendidos */
+/* Enlaces */
 .view-more {
     display: inline-block;
     margin-top: 10px;
     text-decoration: none;
-    color: #007bff;
+    color: var(--highlight-blue);
 }
-
 .view-more:hover {
-    color: #0056b3;
+    color: var(--hover-blue);
 }
 
-/* Estilos del modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border-radius: 10px;
-  }
-  
-  /* Fase lunar (animación de la luna) */
-  .lunar-animation {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .moon {
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: lunarPhases 2s ease-in-out infinite;
-  }
-  
-  /* Fases de la luna (animación) */
-  @keyframes lunarPhases {
-    0% {
-      box-shadow: 10px 0 0 0 rgba(0, 0, 0, 0.5);
-    }
-    25% {
-      box-shadow: 5px 0 0 0 rgba(0, 0, 0, 0.7);
-    }
-    50% {
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.9);
-    }
-    75% {
-      box-shadow: -5px 0 0 0 rgba(0, 0, 0, 0.7);
-    }
-    100% {
-      box-shadow: -10px 0 0 0 rgba(0, 0, 0, 0.5);
-    }
-  }
-  
-  /* Estilos de los botones */
-  button {
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-
-/* Estilo del carrito */
-.cart-section {
-    margin: 20px;
-}
-
-.cart-items {
-    margin-bottom: 20px;
-}
-
-.cart-item {
-    display: flex; /* Usar flexbox para alineación */
-    justify-content: space-between; /* Espacio entre elementos */
-    align-items: center; /* Centrar verticalmente */
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Separación entre productos */
-}
-
-.cart-item:last-child {
-    border-bottom: none; /* Quitar el borde del último elemento */
-}
-
-.remove-from-cart {
-    background-color: #dc3545; /* Color del botón de eliminar */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.remove-from-cart:hover {
-    background-color: #c82333; /* Color al pasar el ratón */
-}
-
-.total {
-    margin-top: 20px;
-    font-size: 1.5em;
-}
-
-.checkout-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.checkout-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Media Queries para dispositivos móviles */
+/* Ajustes responsivos */
 @media (max-width: 768px) {
-    header nav ul {
+    nav ul {
         flex-direction: column;
     }
 
-    .products {
+    .product-grid, .products {
         grid-template-columns: 1fr;
     }
 
     .cart-item {
-        flex-direction: column; /* Alinear verticalmente en la página del carrito */
+        flex-direction: column;
+    }
+
+    .cart-items {
+        padding: 5px;
+    }
+}
+
+/* Tarjetas de productos específicas */
+.product-card {
+    background-color: #F2D78C; /* Pale Yellow */
+    color: var(--midnight-blue); /* Texto en Midnight Blue */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 4px 8px var(--shadow-menu);
+    width: 250px;
+}
+
+.product-card h2 {
+    font-size: 24px;
+    color: var(--deep-royal-blue);
+}
+
+.product-card p {
+    color: #40495E; /* Gris pizarra oscuro */
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.product h3 {
+    margin: 10px 0;
+    color: var(--deep-royal-blue);
+}
+
+/* Estilo de los botones del carrito */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart {
+    background-color: #28a745; /* Verde */
+}
+
+.add-to-cart:hover {
+    background-color: #218838; /* Verde más oscuro al hover */
+}
+
+.remove-from-cart {
+    background-color: var(--danger-red);
+}
+
+.remove-from-cart:hover {
+    background-color: var(--hover-red);
+}
+
+/* Ajustes del modal lunar */
+.moon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--white);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: lunarPhases 2s ease-in-out infinite;
+}
+
+@keyframes lunarPhases {
+    0% {
+        box-shadow: 10px 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+    25% {
+        box-shadow: 5px 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.9);
+    }
+    75% {
+        box-shadow: -5px 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    100% {
+        box-shadow: -10px 0 0 0 rgba(0, 0, 0, 0.5);
     }
 }
