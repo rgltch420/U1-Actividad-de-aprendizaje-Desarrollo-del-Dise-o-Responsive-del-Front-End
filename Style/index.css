@@ -135,37 +135,29 @@ header nav ul li:hover .submenu {
 }
 
 /* Contenedor del carrusel */
+.product-carousel {
+    overflow: hidden; /* Oculta cualquier parte de los productos que excedan este contenedor */
+}
+
 .product-grid {
-    display: flex; /* Alinea los elementos horizontalmente */
-    overflow: hidden; /* Oculta los elementos fuera del contenedor */
-    width: 15%; /* Asegura que ocupa todo el espacio disponible */
-    position: relative;
-    animation: slide 50s infinite linear; /* Ciclo de animación y su duración */
+    display: flex;
+    flex-wrap: nowrap; /* Evita que los elementos se envuelvan */
+    animation: slide 30s infinite linear;
 }
 
-/* Animación para el desplazamiento */
 @keyframes slide {
-    0%, 100% { transform: translateX(0); }
-    10% { transform: translateX(0); }
-    20% { transform: translateX(100%); }
-    30% { transform: translateX(100%); }
-    40% { transform: translateX(200%); }
-    50% { transform: translateX(200%); }
-    60% { transform: translateX(300%); }
-    70% { transform: translateX(300%); }
-    80% { transform: translateX(400%); }
-    90% { transform: translateX(400%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
 }
 
-/* Estilo de cada tarjeta de producto dentro del carrusel */
+/* Asegura que el carrusel mueva los productos correctamente */
+.product-grid {
+    width: 600%; /* Asegúrate de que el ancho sea suficiente para contener todos los productos sin envolver */
+}
+
 .product-card {
-    flex: 0 0 100%; /* Ocupa el 100% del ancho del contenedor */
-    box-sizing: border-box; /* Incluye padding y border en el ancho y alto */
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-light);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    width: 16.666%; /* Cada tarjeta usa un sexto del espacio total visible del carrusel (100 / 6) */
+    flex: 0 0 auto; /* Evita que las tarjetas crezcan o se encojan */
 }
 
 .product-card:hover {
@@ -198,6 +190,37 @@ header nav ul li:hover .submenu {
 
 .product-card button:hover {
     background-color: var(--hover-gold);
+}
+
+/* flechas */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ccc;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-control.left {
+    left: 0;
+}
+
+.carousel-control.right {
+    right: 0;
+}
+
+.product-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-grid {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
 }
 
 /* Botones */
