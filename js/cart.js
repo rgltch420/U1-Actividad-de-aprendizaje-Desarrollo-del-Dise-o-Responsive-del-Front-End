@@ -1,12 +1,12 @@
-// Recuperar los productos del carrito del almacenamiento local
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Exportamos la variable cart para poder usarla en las pruebas
+export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Obtener elementos del DOM
 const cartItemsContainer = document.querySelector('.cart-items');
 const totalPriceContainer = document.getElementById('total-price');
 
 // Función para actualizar el contenido del carrito
-function updateCart() {
+export function updateCart() {
     cartItemsContainer.innerHTML = ''; // Limpiar el carrito
     let totalPrice = 0; // Variable para el total
 
