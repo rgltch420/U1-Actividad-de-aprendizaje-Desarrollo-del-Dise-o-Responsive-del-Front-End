@@ -34,41 +34,21 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Asegura que el contenido esté separado */
+    justify-content: space-between;
     padding: 10px 20px;
     background-color: var(--deep-royal-blue);
     box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-.logo-container {
-    flex: 0 1 auto; /* No crecerá más allá de su contenido */
-}
-
-.logo {
-    height: 60px; /* Ajusta el tamaño del logo aquí */
-    width: auto; /* Mantiene la proporción del logo */
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-nav {
-    display: flex;
-}
-
 nav ul {
     display: flex;
-    justify-content: flex-end; /* Alinea los enlaces al final del contenedor nav */
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 nav ul li {
+    position: relative;
     padding: 0 10px;
 }
 
@@ -76,8 +56,6 @@ nav ul li a {
     color: var(--white);
     text-decoration: none;
 }
-
-/* Resto de los estilos */
 
 nav ul li a:hover {
     color: var(--hover-gold);
@@ -90,65 +68,74 @@ nav ul li a:hover {
     top: 100%;
     left: 0;
     background-color: var(--hover-blue);
-    border: 1px solid #ffffff;
+    padding: 10px 0;
+    border-radius: 4px;
     box-shadow: 0 2px 8px var(--shadow-menu);
     z-index: 1000;
 }
-header nav ul li:hover .submenu {
-    display: block;
-}
-.submenu li a {
-    padding: 10px;
-    white-space: nowrap;
+
+nav ul li:hover > .submenu {
     display: block;
 }
 
-/* Estilo de los productos */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-    padding: 10px 20px;
+.submenu li {
+    padding: 5px 20px;
+    white-space: nowrap;
 }
+
+.submenu li a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.submenu li a:hover {
+    color: var(--hover-gold);
+    background-color: var(--deep-royal-blue);
+    border-radius: 4px;
+}
+
+.logo-container {
+    flex: 0 1 auto;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.header-content nav ul {
+    display: flex;
+    list-style: none;
+}
+
+/* Estilo de los productos */
+.product-section {
+    padding: 20px;
+    background-color: var(--white);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: max-content;
+    gap: 20px;
+}
+
 .product-card {
     background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--shadow-light);
     padding: 15px;
     text-align: center;
+    width: 220px; /* Ajuste de tamaño para tarjetas en el carrusel */
+    flex: 0 0 auto;
     transition: transform 0.3s, box-shadow 0.3s;
-}
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px var(--shadow-light);
-}
-.product-card img {
-    width: 100%;
-    border-radius: 4px;
-}
-.product-card h3 {
-    color: var(--deep-royal-blue);
-}
-.product-card p {
-    font-size: 1.2em;
-    color: var(--midnight-blue);
-}
-
-/* Contenedor del carrusel */
-.product-carousel {
-    overflow: hidden; /* Oculta cualquier parte de los productos que excedan este contenedor */
-}
-
-
-
-/* Asegura que el carrusel mueva los productos correctamente */
-.product-grid {
-    width: 600%; /* Asegúrate de que el ancho sea suficiente para contener todos los productos sin envolver */
-}
-
-.product-card {
-    width: 16.666%; /* Cada tarjeta usa un sexto del espacio total visible del carrusel (100 / 6) */
-    flex: 0 0 auto; /* Evita que las tarjetas crezcan o se encojan */
 }
 
 .product-card:hover {
@@ -162,9 +149,37 @@ header nav ul li:hover .submenu {
     border-radius: 4px;
 }
 
-.product-card h3, .product-card p {
-    margin-top: 5px;
-    color: var(--deep-royal-blue);
+/* Contenedor del carrusel */
+.product-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Botones de control del carrusel */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ccc;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.carousel-control:hover {
+    opacity: 1;
+}
+
+.carousel-control.left {
+    left: 0;
+}
+
+.carousel-control.right {
+    right: 0;
 }
 
 /* Botones dentro de cada tarjeta de producto */
@@ -183,80 +198,24 @@ header nav ul li:hover .submenu {
     background-color: var(--hover-gold);
 }
 
-/* flechas */
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #ccc;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.carousel-control.left {
-    left: 0;
-}
-
-.carousel-control.right {
-    right: 0;
-}
-
-.product-carousel {
-    position: relative;
-    overflow: hidden;
-}
-
-.product-grid {
-    display: flex;
-    transition: transform 0.5s ease;
-    will-change: transform;
-}
-
-/* Botones */
+/* Botones generales */
 button {
-    padding: 10px 20px;
     border-radius: 4px;
     color: var(--white);
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-button:hover {
-    background-color: var(--hover-gold);
-}
-.add-to-cart {
-    background-color: var(--gold);
-}
-.add-to-cart:hover {
-    background-color: var(--hover-gold);
-}
-.remove-from-cart {
-    background-color: var(--danger-red);
-}
-.remove-from-cart:hover {
-    background-color: var(--hover-red);
-}
 
-/* Secciones generales */
-.product-section, .cart-section {
-    margin: 20px 0;
-    padding: 30px;
-    background-color: var(--white);
-    color: var(--text-color);
-    border-radius: 8px;
+/* Ajustes del carrito */
+.cart-items, .cart-section {
+    background-color: var(--cart-bg);
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
     box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-/* Carrito */
-.cart-items {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: var(--cart-bg);
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -264,18 +223,14 @@ button:hover {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
 .cart-item:last-child {
     border-bottom: none;
 }
+
 .total {
     font-size: 1.5em;
     margin-top: 20px;
-}
-.checkout-btn {
-    background-color: var(--highlight-blue);
-}
-.checkout-btn:hover {
-    background-color: var(--hover-gold);
 }
 
 /* Modal */
@@ -290,8 +245,10 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
 }
+
 .modal-content {
-    background-color: var(--white);
+    background-color: var(--white); /* Fondo claro para contraste */
+    color: var(--text-color); /* Color de texto oscuro para mejor visibilidad */
     margin: 15% auto;
     padding: 20px;
     border-radius: 10px;
@@ -300,148 +257,42 @@ button:hover {
     box-shadow: 0 4px 8px var(--shadow-light);
 }
 
-/* Fase lunar */
-.moon-phase-animation {
-    width: 50px;
-    height: 50px;
-    background-color: var(--gold);
-    border-radius: 50%;
-    animation: rotate 2s infinite;
-}
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
-/* Estilo del menú del carrito */
-.cart-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: var(--white);
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 8px var(--shadow-menu);
-    z-index: 1000;
-}
-.cart-icon {
-    position: relative;
-}
-.cart-icon:hover + .cart-menu, .cart-menu:hover {
-    display: block;
-}
-
-/* Pie de página */
-footer {
-    background-color: var(--deep-royal-blue);
-    color: var(--white);
-    padding: 10px;
-    box-shadow: 0 -4px 8px var(--shadow-light);
-}
-footer p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Enlaces */
-.view-more {
-    display: inline-block;
-    margin-top: 10px;
-    text-decoration: none;
-    color: var(--highlight-blue);
-}
-.view-more:hover {
-    color: var(--hover-blue);
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
-
-    .product-grid, .products {
-        grid-template-columns: 1fr;
-    }
-
-    .cart-item {
-        flex-direction: column;
-    }
-
-    .cart-items {
-        padding: 5px;
-    }
-}
-
-/* Tarjetas de productos específicas */
-.product-card {
-    background-color: #F2D78C; /* Pale Yellow */
-    color: var(--midnight-blue); /* Texto en Midnight Blue */
-    border-radius: 10px;
-    padding: 20px;
-    margin: 15px;
-    box-shadow: 0 4px 8px var(--shadow-menu);
-    width: 250px;
-}
-
-.product-card h2 {
-    font-size: 24px;
-    color: var(--deep-royal-blue);
-}
-
-.product-card p {
-    color: #40495E; /* Gris pizarra oscuro */
-}
-
-.product img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-.product h3 {
-    margin: 10px 0;
-    color: var(--deep-royal-blue);
-}
-
-/* Estilo de los botones del carrito */
-button {
+/* Botones dentro del modal */
+#continueShopping,
+#goToCart {
     padding: 10px 20px;
-    margin: 10px;
-    border-radius: 4px;
-    color: var(--white);
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: var(--gold); /* Fondo dorado para hacer juego con otros botones */
     border: none;
+    border-radius: 4px;
+    color: var(--white); /* Color de texto claro */
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 1em;
 }
 
-.add-to-cart {
-    background-color: #28a745; /* Verde */
+/* Hover de los botones del modal */
+#continueShopping:hover,
+#goToCart:hover {
+    background-color: var(--hover-gold); /* Cambio a dorado claro en hover */
 }
 
-.add-to-cart:hover {
-    background-color: #218838; /* Verde más oscuro al hover */
+/* Ajuste para el texto dentro del modal */
+#modalMessage {
+    font-size: 1em;
+    margin-bottom: 15px;
 }
 
-.remove-from-cart {
-    background-color: var(--danger-red);
-}
-
-.remove-from-cart:hover {
-    background-color: var(--hover-red);
-}
-
-/* Ajustes del modal lunar */
+/* Fase lunar */
 .moon {
     width: 80px;
     height: 80px;
     background-color: var(--white);
     border-radius: 50%;
     position: relative;
+    margin: 0 auto 20px; /* Centramos la luna dentro del modal */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     animation: lunarPhases 2s ease-in-out infinite;
 }
@@ -461,5 +312,26 @@ button {
     }
     100% {
         box-shadow: -10px 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para el overlay */
+}
+
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    .product-grid {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .cart-item {
+        flex-direction: column;
     }
 }

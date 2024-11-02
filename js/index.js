@@ -2,25 +2,19 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // Elementos del DOM
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-const cartItemsContainer = document.querySelector('.cart-items');
 const lunarModal = document.getElementById('lunarModal');
 const modalMessage = document.getElementById('modalMessage');
 const continueShoppingButton = document.getElementById('continueShopping');
 const goToCartButton = document.getElementById('goToCart');
-const carousel = document.querySelector('.product-carousel'); // Asegúrate de que este selector es correcto
-const leftButton = document.querySelector('.carousel-control.left');
-const rightButton = document.querySelector('.carousel-control.right');
+const categoryMenu = document.querySelector('nav ul li:nth-child(3)');
+const submenu = categoryMenu.querySelector('.submenu');
 
-// Verificar si estamos en la página del carrito
-const isCartPage = window.location.pathname.includes('cart.html');
-
-// Al cargar la página, actualizamos el carrito si estamos en la página del carrito
+// Al cargar la página, configuramos los eventos y funcionalidades
 document.addEventListener('DOMContentLoaded', () => {
-    if (isCartPage) {
-        updateCartPage();
-    }
-    setupCarouselControls(); // Configurar controles del carrusel
+    setupAddToCartButtons();          // Configurar funcionalidad de botones "Agregar al carrito"
+    setupCarouselControls();          // Configurar controles del carrusel
+    simulateFetchProducts();          // Simula carga de productos desde el servidor para pruebas
+    setupCategoryMenu();              // Configurar el menú de categorías
 });
 
 // Función para agregar producto al carrito
@@ -35,16 +29,6 @@ function saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Añadir funcionalidad a los botones de agregar al carrito
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const product = e.target.parentElement;
-        const productName = product.querySelector('h3').textContent;
-        const productPrice = product.querySelector('p').textContent;
-        addProductToCart(productName, productPrice);
-    });
-});
-
 // Función para mostrar el modal con la animación y el mensaje personalizado
 function showLunarModal(productName) {
     modalMessage.textContent = `${productName} se ha añadido correctamente al carrito. ¿Desea seguir comprando?`;
@@ -52,136 +36,111 @@ function showLunarModal(productName) {
 }
 
 // Ocultar el modal cuando el usuario elige continuar comprando
-continueShoppingButton.addEventListener('click', () => {
-    lunarModal.style.display = 'none';
-});
+continueShoppingButton.addEventListener('click', () => lunarModal.style.display = 'none');
 
 // Redirigir al carrito cuando el usuario elige "Ir al carrito"
-goToCartButton.addEventListener('click', () => {
-    window.location.href = 'cart.html';
-});
+goToCartButton.addEventListener('click', () => window.location.href = 'cart.html');
 
-// Función para actualizar el contenido del carrito en la página del carrito
-function updateCartPage() {
-    cartItemsContainer.innerHTML = ''; // Limpiar el carrito
-
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>No hay productos en el carrito.</p>';
-        return;
-    }
-
-    // Mostrar cada producto en el carrito
-    cart.forEach((product, index) => {
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-        cartItem.innerHTML = `
-            <p>${product.name} - ${product.price}</p>
-            <button class="remove-from-cart" data-index="${index}">Eliminar</button>
-        `;
-        cartItemsContainer.appendChild(cartItem);
-    });
-
-    // Añadir funcionalidad a los botones de eliminar
-    enableRemoveButtons();
+// Configuración del menú de categorías
+function setupCategoryMenu() {
+    categoryMenu.addEventListener('mouseenter', () => submenu.style.display = 'block');
+    categoryMenu.addEventListener('mouseleave', () => submenu.style.display = 'none');
 }
 
-// Función para habilitar los botones de eliminación de productos del carrito
-function enableRemoveButtons() {
-    const removeButtons = document.querySelectorAll('.remove-from-cart');
-    removeButtons.forEach(button => {
+// Configurar la funcionalidad de los botones "Agregar al carrito"
+function setupAddToCartButtons() {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', (e) => {
-            const index = e.target.getAttribute('data-index');
-            removeProductFromCart(index);
+            const product = e.target.closest('.product-card');
+            const productName = product.querySelector('h3').textContent;
+            const productPrice = product.querySelector('p').textContent;
+            addProductToCart(productName, productPrice);
         });
     });
 }
 
-// Configurar los controles del carrusel
+// Configurar los controles del carrusel para carrusel infinito
 function setupCarouselControls() {
-    let scrollAmount = 0;
+    document.querySelectorAll(".product-carousel").forEach(carousel => {
+        const productGrid = carousel.querySelector(".product-grid");
+        const btnLeft = carousel.querySelector(".carousel-control.left");
+        const btnRight = carousel.querySelector(".carousel-control.right");
 
-    rightButton.addEventListener('click', () => {
-        if (scrollAmount <= carousel.scrollWidth - carousel.clientWidth) {
-            carousel.scrollTo({
-                top: 0,
-                left: (scrollAmount += carousel.clientWidth / 2),
-                behavior: 'smooth'
-            });
-        }
-    });
+        // Duplicar el primer y último producto
+        const firstChild = productGrid.firstElementChild.cloneNode(true);
+        const lastChild = productGrid.lastElementChild.cloneNode(true);
+        productGrid.appendChild(firstChild);
+        productGrid.insertBefore(lastChild, productGrid.firstElementChild);
 
-    leftButton.addEventListener('click', () => {
-        if (scrollAmount > 0) {
-            carousel.scrollTo({
-                top: 0,
-                left: (scrollAmount -= carousel.clientWidth / 2),
-                behavior: 'smooth'
-            });
-        }
+        let visibleAreaWidth = carousel.offsetWidth;
+        let currentIndex = 1;
+
+        // Inicializamos el carrusel en la primera posición
+        productGrid.style.transition = "none";
+        productGrid.style.transform = `translateX(-${visibleAreaWidth}px)`;
+
+        // Botón de desplazamiento a la izquierda
+        btnLeft.addEventListener("click", () => {
+            currentIndex--;
+            productGrid.style.transition = "transform 0.5s ease";
+            productGrid.style.transform = `translateX(-${visibleAreaWidth * currentIndex}px)`;
+
+            if (currentIndex === 0) {
+                setTimeout(() => {
+                    productGrid.style.transition = "none";
+                    currentIndex = productGrid.children.length - 2; // Saltar al duplicado
+                    productGrid.style.transform = `translateX(-${visibleAreaWidth * currentIndex}px)`;
+                }, 500);
+            }
+        });
+
+        // Botón de desplazamiento a la derecha
+        btnRight.addEventListener("click", () => {
+            currentIndex++;
+            productGrid.style.transition = "transform 0.5s ease";
+            productGrid.style.transform = `translateX(-${visibleAreaWidth * currentIndex}px)`;
+
+            if (currentIndex === productGrid.children.length - 1) {
+                setTimeout(() => {
+                    productGrid.style.transition = "none";
+                    currentIndex = 1; // Saltar al duplicado
+                    productGrid.style.transform = `translateX(-${visibleAreaWidth}px)`;
+                }, 500);
+            }
+        });
     });
-// función para agregar productos al carrito usando fetch.
-    document.addEventListener("DOMContentLoaded", () => {
-        fetch('/api/products')
-            .then(response => response.json())
-            .then(products => displayProducts(products))
-            .catch(error => console.error("Error fetching products:", error));
-    });
-    
-    function displayProducts(products) {
-        const productGrid = document.querySelector(".product-grid");
-        productGrid.innerHTML = "";
+}
+
+// Función para simular carga de productos desde el servidor (prueba con más productos)
+function simulateFetchProducts() {
+    const products = [];
+    for (let i = 1; i <= 13; i++) { // Simulamos 13 productos para cada carrusel
+        products.push({
+            id: i,
+            name: `Producto ${i}`,
+            price: `$${(10 * i).toFixed(2)}`,
+            imageUrl: `https://via.placeholder.com/150`
+        });
+    }
+    displayProducts(products); // Llama a la función para mostrar los productos
+}
+
+// Función para mostrar los productos en el carrusel
+function displayProducts(products) {
+    document.querySelectorAll(".product-grid").forEach(grid => {
+        grid.innerHTML = ""; // Limpia los productos existentes en cada carrusel
         products.forEach(product => {
             const productCard = document.createElement("div");
             productCard.classList.add("product-card");
             productCard.innerHTML = `
                 <img src="${product.imageUrl}" alt="${product.name}" loading="lazy"/>
                 <h3>${product.name}</h3>
-                <p>$${product.price}</p>
+                <p>${product.price}</p>
                 <button class="add-to-cart" data-id="${product.id}">Agregar al Carrito</button>
             `;
-            productGrid.appendChild(productCard);
-        });
-    
-        document.querySelectorAll(".add-to-cart").forEach(button => {
-            button.addEventListener("click", () => addToCart(button.dataset.id));
-        });
-    }
-    
-    function addToCart(productId) {
-        fetch('/api/cart/add', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}` // Token JWT
-            },
-            body: JSON.stringify({ productId })
-        })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error adding to cart:", error));
-    }
-
-    //mover el carrusel a la izquierda o a la derecha cuando se haga clic en los botones.
-    document.addEventListener("DOMContentLoaded", () => {
-        const productCarousel = document.querySelectorAll(".product-carousel");
-        
-        productCarousel.forEach(carousel => {
-            const productGrid = carousel.querySelector(".product-grid");
-            const btnLeft = carousel.querySelector(".carousel-control.left");
-            const btnRight = carousel.querySelector(".carousel-control.right");
-    
-            let scrollAmount = 0;
-            const scrollStep = 300; // Ajusta el valor para controlar cuánto se desplaza cada vez
-    
-            btnLeft.addEventListener("click", () => {
-                productGrid.scrollBy({ left: -scrollStep, behavior: "smooth" });
-            });
-    
-            btnRight.addEventListener("click", () => {
-                productGrid.scrollBy({ left: scrollStep, behavior: "smooth" });
-            });
+            grid.appendChild(productCard);
         });
     });
-    
-    
+
+    setupAddToCartButtons(); // Configuramos los eventos para los nuevos botones de "Agregar al carrito"
 }
