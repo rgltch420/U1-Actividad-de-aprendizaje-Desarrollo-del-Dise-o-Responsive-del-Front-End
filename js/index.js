@@ -119,4 +119,46 @@ function setupCarouselControls() {
             });
         }
     });
+// función para agregar productos al carrito usando fetch.
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('/api/products')
+            .then(response => response.json())
+            .then(products => displayProducts(products))
+            .catch(error => console.error("Error fetching products:", error));
+    });
+    
+    function displayProducts(products) {
+        const productGrid = document.querySelector(".product-grid");
+        productGrid.innerHTML = "";
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+            productCard.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.name}" loading="lazy"/>
+                <h3>${product.name}</h3>
+                <p>$${product.price}</p>
+                <button class="add-to-cart" data-id="${product.id}">Agregar al Carrito</button>
+            `;
+            productGrid.appendChild(productCard);
+        });
+    
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", () => addToCart(button.dataset.id));
+        });
+    }
+    
+    function addToCart(productId) {
+        fetch('/api/cart/add', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}` // Token JWT
+            },
+            body: JSON.stringify({ productId })
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error adding to cart:", error));
+    }
+    
 }

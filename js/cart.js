@@ -39,5 +39,60 @@ cartItemsContainer.addEventListener('click', (e) => {
     }
 });
 
+//Agrega funciones para cargar el contenido del carrito y eliminar productos de este.
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/api/cart', {
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}` // Token JWT
+        }
+    })
+    .then(response => response.json())
+    .then(cartItems => displayCartItems(cartItems))
+    .catch(error => console.error("Error fetching cart:", error));
+});
+
+function displayCartItems(cartItems) {
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const totalPriceElement = document.getElementById("total-price");
+    let total = 0;
+
+    cartItemsContainer.innerHTML = "";
+    cartItems.forEach(item => {
+        total += item.price;
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.innerHTML = `
+            <span>${item.name}</span>
+            <span>$${item.price}</span>
+            <button class="remove-from-cart" data-id="${item.id}">Eliminar</button>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    totalPriceElement.textContent = `$${total.toFixed(2)}`;
+
+    document.querySelectorAll(".remove-from-cart").forEach(button => {
+        button.addEventListener("click", () => removeFromCart(button.dataset.id));
+    });
+}
+
+function removeFromCart(productId) {
+    fetch('/api/cart/remove', {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        location.reload(); // Recargar la página para actualizar el carrito
+    })
+    .catch(error => console.error("Error removing from cart:", error));
+}
+
+
 // Inicializar el carrito
 updateCart();
