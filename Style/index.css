@@ -139,16 +139,7 @@ header nav ul li:hover .submenu {
     overflow: hidden; /* Oculta cualquier parte de los productos que excedan este contenedor */
 }
 
-.product-grid {
-    display: flex;
-    flex-wrap: nowrap; /* Evita que los elementos se envuelvan */
-    animation: slide 30s infinite linear;
-}
 
-@keyframes slide {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-}
 
 /* Asegura que el carrusel mueva los productos correctamente */
 .product-grid {
