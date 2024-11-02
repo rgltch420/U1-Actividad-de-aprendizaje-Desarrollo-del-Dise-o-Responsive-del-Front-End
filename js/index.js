@@ -160,5 +160,28 @@ function setupCarouselControls() {
         .then(data => alert(data.message))
         .catch(error => console.error("Error adding to cart:", error));
     }
+
+    //mover el carrusel a la izquierda o a la derecha cuando se haga clic en los botones.
+    document.addEventListener("DOMContentLoaded", () => {
+        const productCarousel = document.querySelectorAll(".product-carousel");
+        
+        productCarousel.forEach(carousel => {
+            const productGrid = carousel.querySelector(".product-grid");
+            const btnLeft = carousel.querySelector(".carousel-control.left");
+            const btnRight = carousel.querySelector(".carousel-control.right");
+    
+            let scrollAmount = 0;
+            const scrollStep = 300; // Ajusta el valor para controlar cuánto se desplaza cada vez
+    
+            btnLeft.addEventListener("click", () => {
+                productGrid.scrollBy({ left: -scrollStep, behavior: "smooth" });
+            });
+    
+            btnRight.addEventListener("click", () => {
+                productGrid.scrollBy({ left: scrollStep, behavior: "smooth" });
+            });
+        });
+    });
+    
     
 }
