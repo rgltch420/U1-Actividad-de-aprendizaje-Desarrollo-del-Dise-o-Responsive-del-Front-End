@@ -233,6 +233,125 @@ button {
     margin-top: 20px;
 }
 
+
+/* FOOTER*/
+footer{
+background-color: #163864; /* Azul oscuro */
+color: #EDEDED; /* Blanco */
+padding: 20px 0;
+font-size: 14px;
+}
+
+.footer-container {
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1200px;
+margin: 0 auto;
+text-align: center;
+}
+
+.footer-section {
+flex: 1;
+margin: 10px;
+}
+
+.footer-section h4 {
+font-size: 16px;
+margin-bottom: 15px;
+color: #D7A84A; /* Dorado */
+}
+
+.footer-section ul, .footer-section p {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.footer-section ul li {
+margin: 5px 0;
+}
+
+.footer-section ul li a {
+text-decoration: none;
+color: #EDEDED;
+transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+color: #F2D78C; /* Amarillo pálido */
+}
+
+.footer-section .social-media {
+display: flex;
+justify-content: center;
+gap: 15px;
+padding: 0;
+}
+
+.footer-section .social-media img {
+width: 30px;
+height: 30px;
+}
+
+.footer-section .logo-svg {
+    display: flex;
+    justify-content: center;
+    gap: 0px; /* Sin espacio entre las letras */
+}
+
+.footer-section .logo-svg img {
+    width: 35px; /* Ajustar el ancho si es necesario */
+    height: auto;
+    margin: 0; /* Asegurar que no haya márgenes entre las imágenes */
+    padding: 0; /* Asegurar que no haya relleno */
+}
+
+
+.footer-section form {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+
+.footer-section form input,
+.footer-section form button {
+padding: 10px;
+border: none;
+border-radius: 5px;
+font-size: 14px;
+}
+
+.footer-section form input {
+background-color: #262626;
+color: #EDEDED;
+width: 80%;
+max-width: 300px;
+}
+
+.footer-section form button {
+background-color: #D7A84A;
+color: #163864;
+cursor: pointer;
+transition: background-color 0.3s;
+width: 80%;
+max-width: 300px;
+}
+
+.footer-section form button:hover {
+background-color: #F2D78C; /* Amarillo más claro */
+}
+
+.footer-bottom {
+text-align: center;
+margin-top: 20px;
+border-top: 1px solid #EDEDED;
+padding-top: 10px;
+font-size: 12px;
+color: #AFAFAF;
+}
+
 /* Modal */
 .modal {
     display: none;
@@ -321,17 +440,82 @@ button {
 
 
 /* Ajustes responsivos */
-@media (max-width: 768px) {
-    nav ul {
+/* Base Responsiveness */
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-content {
         flex-direction: column;
     }
 
     .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para tablets */
+        gap: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
         flex-direction: column;
         padding: 10px;
     }
 
-    .cart-item {
+    nav ul {
         flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 columna para móviles */
+    }
+
+    .product-card {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    footer {
+        font-size: 0.875rem; /* Reducir el tamaño del texto */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        text-align: center;
+        padding: 5px;
+    }
+
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .product-grid {
+        gap: 10px;
+    }
+
+    .footer-section h4 {
+        font-size: 1rem; /* Ajustar tamaño del texto del footer */
+    }
+
+    footer {
+        font-size: 0.75rem;
     }
 }
