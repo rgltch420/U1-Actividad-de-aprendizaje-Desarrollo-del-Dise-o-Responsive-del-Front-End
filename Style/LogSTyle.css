@@ -64,3 +64,93 @@
     margin-top: 10px;
     display: none;
 }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--white);
+    color: var(--text-color);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.close-modal-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--danger-red);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    background-color: var(--hover-red);
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.register-link a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+/* Botón de registro dentro del modal */
+.register-btn {
+    padding: 10px 20px;
+    background-color: var(--gold); /* Color dorado */
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%; /* Para que sea del mismo ancho que los inputs */
+}
+
+.register-btn:hover {
+    background-color: var(--hover-gold); /* Color dorado más claro al pasar el cursor */
+}
+
+/* Para alinear y darle margen al botón de cierre del modal */
+.close-modal-btn {
+    padding: 10px 20px;
+    background-color: var(--danger-red); /* Rojo */
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%; /* Para que sea del mismo ancho que los inputs */
+}
+
+.close-modal-btn:hover {
+    background-color: var(--hover-red); /* Rojo más oscuro al pasar el cursor */
+}
+
