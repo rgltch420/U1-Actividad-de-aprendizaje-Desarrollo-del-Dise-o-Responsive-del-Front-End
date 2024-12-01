@@ -1,0 +1,66 @@
+/* Sección de inicio de sesión */
+.login-section {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    text-align: center;
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: var(--gold);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: var(--cart-bg);
+    color: var(--text-color);
+}
+
+.form-group input:focus {
+    border-color: var(--gold);
+    outline: none;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background-color: var(--gold);
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: var(--hover-gold);
+}
+
+.error-message {
+    color: var(--danger-red);
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: none;
+}
