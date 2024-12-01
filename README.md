@@ -1,5 +1,11 @@
 
+# **SKYB2C**
+
 SKYB2C: Un eCommerce que va más allá del cielo. Movemos lo imposible con logística de primera, ofreciendo envíos en 24 y 48 horas a cualquier parte del mundo. Bienvenidos a la experiencia de compras online más innovadora y eficiente.
+
+---
+
+## **Descripción**
 
 **SKYB2C** es una plataforma de comercio electrónico diseñada para brindar a los usuarios una experiencia de compra fluida, rápida y segura. Inspirada en la excelencia logística, SKYB2C combina tecnología avanzada con un diseño responsivo que garantiza un acceso óptimo desde cualquier dispositivo.
 
@@ -7,7 +13,11 @@ Ya sea que estés buscando electrónicos, computadoras, productos Smart Home o a
 
 **Nota**: SKYB2C se encuentra en su fase beta. Estamos trabajando constantemente para agregar nuevas funcionalidades y mejorar tu experiencia de usuario. Tu feedback es invaluable para nosotros.
 
-**Frontend**
+---
+
+## **Características Principales**
+
+### **Frontend**
 - **Diseño Responsivo**:
   - Compatible con todos los dispositivos: Desde smartphones hasta desktops.
   - Interfaz intuitiva: Navegación fácil para encontrar productos rápidamente.
@@ -21,7 +31,7 @@ Ya sea que estés buscando electrónicos, computadoras, productos Smart Home o a
   - Formulario de inicio de sesión y registro con validaciones en frontend.
   - Modal dinámico para el registro.
 
-**Backend**
+### **Backend**
 - **API Básica**:
   - Endpoint `/api/products`: Devuelve datos en formato JSON con una lista de productos.
   - Ejemplo de datos:
@@ -83,14 +93,21 @@ U1-Actividad-de-aprendizaje-Desarrollo-del-Dise-o-Responsive-del-Front-End/
 │   └── index.js            # Funcionalidad dinámica
 └── README.md               # Documentación del proyecto
 ```
- **Requisitos Previos**
+
+---
+
+## **Cómo Ejecutar el Proyecto**
+
+### **Requisitos Previos**
 1. Tener instalado:
    - [Node.js](https://nodejs.org/) (versión LTS recomendada).
    - [Git](https://git-scm.com/).
 2. Editor de texto (opcional, recomendado: [VS Code](https://code.visualstudio.com/)).
 3. Navegador web moderno (recomendado: Google Chrome o Firefox).
 
-**1. Clonar el repositorio**
+### **Pasos para Ejecutar**
+
+#### **1. Clonar el repositorio**
 ```bash
 git clone https://github.com/rgltch420/U1-Actividad-de-aprendizaje-Desarrollo-del-Dise-o-Responsive-del-Front-End.git
 ```
@@ -135,3 +152,4 @@ SKYB2C está en continuo desarrollo, y nos encantaría contar contigo para hacer
 ## **Inspiración**
 SKYB2C nace de la idea de romper barreras en el comercio electrónico. Más que una tienda, es una experiencia global que conecta a las personas con lo que aman, donde sea que estén. Estamos comprometidos a evolucionar y llevar esta plataforma al siguiente nivel.
 
+---
