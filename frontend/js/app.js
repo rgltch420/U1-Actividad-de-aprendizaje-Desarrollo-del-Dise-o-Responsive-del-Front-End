@@ -71,4 +71,32 @@ document.addEventListener("DOMContentLoaded", () => {
             registerModal.style.display = "none";
         }
     });
+    document.addEventListener("DOMContentLoaded", () => {
+        const productGrid = document.querySelector(".product-grid");
+    
+        // Consumir la API
+        fetch("http://localhost:3000/api/products")
+            .then((response) => response.json())
+            .then((products) => {
+                productGrid.innerHTML = ""; // Limpia el contenido actual
+                products.forEach((product) => {
+                    // Crear una tarjeta de producto
+                    const productCard = document.createElement("div");
+                    productCard.classList.add("product-card");
+    
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" loading="lazy"/>
+                        <h3>${product.name}</h3>
+                        <p>$${product.price.toFixed(2)}</p>
+                        <button class="add-to-cart">Agregar al Carrito</button>
+                    `;
+    
+                    productGrid.appendChild(productCard);
+                });
+            })
+            .catch((error) => {
+                console.error("Error al obtener los productos:", error);
+            });
+    });
+    
 });
